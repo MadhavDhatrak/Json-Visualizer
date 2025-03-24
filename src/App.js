@@ -62,17 +62,17 @@ function App() {
   };
 
   return (
-    <div className="min-h-screen bg-gray-100 dark:bg-gray-900 transition-colors duration-200">
+    <div className="min-h-screen bg-gray-900">
       <Header />
       
       <div className="container mx-auto p-4">
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 h-[calc(100vh-80px)]">
           <div className="flex flex-col">
             <JsonInput onValidate={handleValidate} schema={schema} />
             <ValidationResults results={validationResults} />
           </div>
           
-          <div>
+          <div className="h-full">
             <SchemaVisualizer 
               data={jsonData}
               validationErrors={validationResults?.errors || []} 

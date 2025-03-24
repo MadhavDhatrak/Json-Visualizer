@@ -137,45 +137,44 @@ const SchemaVisualizer = ({ data, validationErrors }) => {
   console.log('Nodes count:', elements.nodes.length, 'Edges count:', elements.edges.length);
 
   return (
-    <div className="border rounded-md shadow-sm bg-white dark:bg-gray-800 h-[600px]" ref={containerRef}>
-      <h2 className="text-xl font-semibold p-4 dark:text-white">Data Visualization</h2>
+    <div className="border rounded-md shadow-sm bg-gray-900 h-[calc(100vh-100px)]">
+      <h2 className="text-xl font-semibold p-4 text-white border-b border-gray-700">
+        Data Visualization
+      </h2>
       
-      <div className="h-[calc(100%-60px)]" style={{ position: 'relative' }}>
+      <div className="h-[calc(100%-60px)] cytoscape-container">
         {elements.nodes.length > 0 ? (
           <CytoscapeComponent
             elements={[...elements.nodes, ...elements.edges]}
-            style={{ width: '100%', height: '100%', position: 'absolute', top: 0, left: 0 }}
+            style={{ width: '100%', height: '100%' }}
             stylesheet={cytoscapeStylesheet}
             layout={{
               name: 'dagre',
               rankDir: 'TB',
-              padding: 40,
-              spacingFactor: 1.2,
-              nodeSep: 60,
-              rankSep: 80,
-              edgeSep: 40,
+              padding: 30,
+              spacingFactor: 1.1,
+              nodeSep: 50,
+              rankSep: 70,
+              edgeSep: 30,
               animate: true,
-              animationDuration: 500,
+              animationDuration: 300,
               fit: true,
-              ranker: 'network-simplex',
-              minLen: function(edge) {
-                return 1;
-              },
-              edgeWeight: function(edge) {
-                return 1;
-              },
-              overlap: false,
               avoidOverlap: true,
-              maxSimulationTime: 2000
+              ranker: 'tight-tree',
+              minLen: function(edge) { return 1; },
+              edgeWeight: function(edge) { return 2; },
+              nodeDimensionsIncludeLabels: true,
+              routingStyle: 'orthogonal'
             }}
             cy={(cy) => {
-              console.log('Cytoscape instance created');
               setCyRef(cy);
               cy.fit();
+              cy.minZoom(0.5);
+              cy.maxZoom(2);
             }}
           />
         ) : (
-          <div className="flex items-center justify-center h-full text-gray-500 dark:text-gray-300">
+          <div className="flex items-center justify-center h-full text-gray-400">
             No data to visualize
           </div>
         )}
