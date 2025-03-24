@@ -106,8 +106,24 @@ const SchemaVisualizer = ({ data, validationErrors }) => {
         cyRef.layout({
           name: 'dagre',
           rankDir: 'TB',
-          padding: 50,
-          animate: true
+          padding: 40,
+          spacingFactor: 1.2,
+          nodeSep: 60,
+          rankSep: 80,
+          edgeSep: 40,
+          animate: true,
+          animationDuration: 500,
+          fit: true,
+          ranker: 'network-simplex',
+          minLen: function(edge) {
+            return 1;
+          },
+          edgeWeight: function(edge) {
+            return 1;
+          },
+          overlap: false,
+          avoidOverlap: true,
+          maxSimulationTime: 2000
         }).run();
       }
     };
@@ -133,13 +149,24 @@ const SchemaVisualizer = ({ data, validationErrors }) => {
             layout={{
               name: 'dagre',
               rankDir: 'TB',
-              padding: 50,
-              spacingFactor: 1.1,
+              padding: 40,
+              spacingFactor: 1.2,
               nodeSep: 60,
               rankSep: 80,
+              edgeSep: 40,
               animate: true,
               animationDuration: 500,
-              fit: true
+              fit: true,
+              ranker: 'network-simplex',
+              minLen: function(edge) {
+                return 1;
+              },
+              edgeWeight: function(edge) {
+                return 1;
+              },
+              overlap: false,
+              avoidOverlap: true,
+              maxSimulationTime: 2000
             }}
             cy={(cy) => {
               console.log('Cytoscape instance created');
