@@ -4,7 +4,7 @@ import cytoscape from 'cytoscape';
 import dagre from 'cytoscape-dagre';
 import { parseSchemaForVisualization, markInvalidNodes } from '../utils/schemaParser';
 
-// Register the dagre layout
+
 if (!cytoscape.prototype.hasInitialised) {
   cytoscape.use(dagre);
   cytoscape.prototype.hasInitialised = true;
@@ -15,7 +15,6 @@ const SchemaVisualizer = ({ data, validationErrors }) => {
   const [cyRef, setCyRef] = useState(null);
   const containerRef = useRef(null);
 
-  // Debug logs
   console.log('SchemaVisualizer rendering with data:', data);
 
   useEffect(() => {
@@ -94,7 +93,7 @@ const SchemaVisualizer = ({ data, validationErrors }) => {
     }
   ];
 
-  // Force re-render on window resize
+ 
   useEffect(() => {
     const handleResize = () => {
       if (cyRef) {

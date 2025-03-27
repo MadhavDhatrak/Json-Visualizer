@@ -120,9 +120,6 @@ export const parseSchemaForVisualization = (jsonData, parentId = null, propertyN
   return { nodes, edges };
 };
 
-/**
- * Marks nodes as invalid based on validation errors
- */
 export const markInvalidNodes = (elements, errors) => {
   if (!errors || errors.length === 0 || !elements || !elements.nodes) {
     return elements;

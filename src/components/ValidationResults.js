@@ -4,7 +4,6 @@ const ValidationResults = ({ results }) => {
   if (!results) return null;
   
   const { isValid, errors } = results;
-  
   return (
     <div className="p-4 border rounded-md shadow-sm bg-white dark:bg-gray-800 mt-4">
       <h2 className="text-xl font-semibold mb-2 dark:text-white">Validation Results</h2>

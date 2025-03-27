@@ -17,7 +17,6 @@ const JsonInput = ({ onValidate, schema }) => {
       setError('Invalid JSON: ' + err.message);
     }
   };
-
   const handleReset = () => {
     setJsonInput('');
     setError('');
